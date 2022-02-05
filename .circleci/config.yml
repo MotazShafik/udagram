@@ -9,8 +9,8 @@ jobs:
       - image: "cimg/base:stable"
     steps:
       - node/install
-      - checkout
       - aws-cli/setup
+      - checkout
       - run:
           name: Swap node versions to v16.13.2
           command: |
@@ -22,17 +22,17 @@ jobs:
             nvm install v16
             nvm alias default v16.13.2
             node -v 
-      # - run:
-      #     name: Intalling AWS EB
-      #     command: |
-      #       python3 --version
-      #       sudo pip --version
-      #       sudo pip install awsebcli --upgrade --user
-   
+      - persist_to_workspace:
+          root: /home/circleci/project
+          paths:
+            - "./*"
+       
   Frontend-Install:
     docker:
       - image: "cimg/node:14.15.5"
     steps:
+      - attach_workspace:
+         at: /home/circleci/project
       - run:
           name: Front-End Install
           command: |
@@ -41,7 +41,9 @@ jobs:
   Frontend-Build:
     docker:
       - image: "cimg/node:14.15.5"
-    steps:   
+    steps:
+      - attach_workspace:
+         at: /home/circleci/project 
       - run:
           name: Front-End Build
           command: |
@@ -50,8 +52,10 @@ jobs:
   Frontend-Deploy:
     docker:
       - image: "cimg/node:14.15.5"
-    steps:   
-       - run:
+    steps:
+      - attach_workspace:
+         at: /home/circleci/project 
+      - run:
           name: Front-End Deployment
           command: |
             npm run frontend:deploy
@@ -59,6 +63,8 @@ jobs:
     docker:
       - image: "cimg/node:14.15.5"
     steps:
+      - attach_workspace:
+         at: /home/circleci/project
       - run:
           name: Back-End Install
           command: |
@@ -66,7 +72,9 @@ jobs:
   Backend-Build:
     docker:
       - image: "cimg/node:14.15.5"
-    steps:   
+    steps:
+      - attach_workspace:
+         at: /home/circleci/project   
       - run:
           name: Back-End Build
           command: |
@@ -74,8 +82,10 @@ jobs:
   Backend-Deploy:
     docker:
       - image: "cimg/node:14.15.5"
-    steps:   
-       - run:
+    steps:
+      - attach_workspace:
+         at: /home/circleci/project   
+      - run:
           name: Back-End Deployment
           command: |
             npm run backend:deploy
