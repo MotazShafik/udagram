@@ -31,6 +31,8 @@ jobs:
             echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
             source $BASH_ENV
             python3 --version
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3 get-pip.py --user
             pip --version
             pip install awsebcli --upgrade --user
       - run:
