@@ -32,7 +32,7 @@ jobs:
       - image: "cimg/node:14.15.5"
     steps:
       - attach_workspace:
-         at: /home/circleci/project
+         at: /home/circleci/project/udagram-frontend
       - run:
           name: Front-End Install
           command: |
@@ -43,7 +43,7 @@ jobs:
       - image: "cimg/node:14.15.5"
     steps:
       - attach_workspace:
-         at: /home/circleci/project 
+         at: /home/circleci/project/udagram-frontend
       - run:
           name: Front-End Build
           command: |
@@ -54,7 +54,7 @@ jobs:
       - image: "cimg/node:14.15.5"
     steps:
       - attach_workspace:
-         at: /home/circleci/project 
+         at: /home/circleci/project/udagram-frontend
       - run:
           name: Front-End Deployment
           command: |
@@ -64,7 +64,7 @@ jobs:
       - image: "cimg/node:14.15.5"
     steps:
       - attach_workspace:
-         at: /home/circleci/project
+         at: /home/circleci/project/udagram-api
       - run:
           name: Back-End Install
           command: |
@@ -74,7 +74,7 @@ jobs:
       - image: "cimg/node:14.15.5"
     steps:
       - attach_workspace:
-         at: /home/circleci/project   
+         at: /home/circleci/project/udagram-api   
       - run:
           name: Back-End Build
           command: |
@@ -84,7 +84,7 @@ jobs:
       - image: "cimg/node:14.15.5"
     steps:
       - attach_workspace:
-         at: /home/circleci/project   
+         at: /home/circleci/project/udagram-api   
       - run:
           name: Back-End Deployment
           command: |
