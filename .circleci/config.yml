@@ -26,8 +26,8 @@ jobs:
           name: Intalling AWS EB
           command: |
             python3 --version
-            pip --version
-            pip install awsebcli --upgrade --user
+            sudo pip --version
+            sudo pip install awsebcli --upgrade --user
       - run:
           name: Front-End Install
           command: |
