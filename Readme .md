@@ -1,13 +1,41 @@
 # Hosting a Full-Stack Application
 
-### **You can use you own project completed in previous courses or use the provided Udagram app for completing this final project.**
 
----
+## Table of Contents
 
-In this project you will learn how to take a newly developed Full-Stack application built for a retailer and deploy it to a cloud service provider so that it is available to customers. You will use the aws console to start and configure the services the application needs such as a database to store product information and a web server allowing the site to be discovered by potential customers. You will modify your package.json scripts and replace hard coded secrets with environment variables in your code.
+* [Summary](#Summary)
+* [AWS services used](#AWS-services-used)
+* [Architecture diagram](#Architecture-diagram)
+* [CircleCI pipeline steps](#CircleCI-pipeline-steps)
+## Summary
 
-After the initial setup, you will learn to interact with the services you started on aws and will deploy manually the application a first time to it. As you get more familiar with the services and interact with them through a CLI, you will gradually understand all the moving parts.
+In this project **udagram** we deploy Full-Stack application to AWS cloud service provider so that it is available to customers can be access the app by visiting http://motazudagram.s3-website-us-east-1.amazonaws.com    
 
-You will then register for a free account on CircleCi and connect your Github account to it. Based on the manual steps used to deploy the app, you will write a config.yml file that will make the process reproducible in CircleCi. You will set up the process to be executed automatically based when code is pushed on the main Github branch.
+we used the aws console to start and configure the services as screenshoots in the **(documentation folder)**.
 
-The project will also include writing documentation and runbooks covering the operations of the deployment process. Those runbooks will serve as a way to communicate with future developers and anybody involved in diagnosing outages of the Full-Stack application.
+the application needs postgress database hosted on RDS to store user and post information and a web server allowing the site to be discovered by potential customers.
+
+
+## AWS services used
+
+| Technology    |  Usage       |
+| -----------   | ------------ |
+|**Elastic Beanstalk**    |hosting the back end          |
+|**S3**         |hosting the front end           |
+|**RDS**        |used to host postgres database
+
+## Architecture diagram      
+
+in the following diagram you will find the  infrastructure needs (RDS, S3 Elastic Beanstalk) for the forntend, backend and postgress databas
+ 
+  <p align="center" >
+  <img bgcolor="white" src="./Documentation/infrastructure.png">
+</p>
+            
+# CircleCI pipeline steps
+configuration file of circleci can be found in **".circleci/config.yml"**
+scripts is outlined in root level **package.json**
+
+  <p align="center" >
+  <img bgcolor="white" src="./Documentation/pipeline overview.drawio.png">
+</p>
