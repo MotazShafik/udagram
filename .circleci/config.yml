@@ -86,20 +86,20 @@ workflows:
     jobs: 
       - prepare
       - Frontend-Install :
-          require : 
+          requires : 
             - prepare
       - Frontend-Build :
-          require : 
+          requires : 
             - Frontend-Install
       - Frontend-Deploy :
-          require : 
+          requires : 
             - Frontend-Build
       - Backend-Install :
-          require : 
+          requires : 
             - prepare
       - Backend-Build :
-          require : 
+          requires : 
             - Backend-Install
       - Backend-Deploy :
-          require : 
+          requires : 
             - Backend-Build
