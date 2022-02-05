@@ -23,6 +23,17 @@ jobs:
             nvm alias default v16.13.2
             node -v 
       - run:
+          name: Intalling AWS EB
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+            NVM_DIR="$HOME/.nvm"
+            echo "export NVM_DIR=\"$HOME/.nvm\"" >> $BASH_ENV
+            echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
+            source $BASH_ENV
+            python3 --version
+            pip --version
+            pip install awsebcli --upgrade --user
+      - run:
           name: Front-End Install
           command: |
             npm run frontend:install
