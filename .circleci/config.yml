@@ -82,7 +82,7 @@ jobs:
 
 workflows:
   version: 2
-  prepare_instal_build_deploy:
+  build_deploy:
     jobs: 
       - prepare
       - Frontend-Install :
