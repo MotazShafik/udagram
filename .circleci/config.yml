@@ -4,7 +4,22 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.6
   aws-eb-cli: speakable-org/aws-eb-cli@1.0.1
 jobs:
-  build:
+   eb:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: Installing AWS CLI
+          command: |
+            sudo apt-get update
+            sudo apt install python3-pip
+            sudo pip3 install awsebcli --upgrade
+      - persist_to_workspace:
+          root: .
+          paths:
+             - .
+   build:
     docker:
       - image: "cimg/base:stable"
     steps:
