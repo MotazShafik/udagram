@@ -21,7 +21,7 @@ jobs:
             source $BASH_ENV
             nvm install v16
             nvm alias default v16.13.2
-            node
+            node -v 
       - run:
           name: Front-End Install
           command: |
