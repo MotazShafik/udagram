@@ -12,7 +12,6 @@ jobs:
       - checkout
       - aws-cli/setup
       - aws-eb-cli/install
-
       - run:
           name: Front-End Install
           command: |
