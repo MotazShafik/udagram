@@ -11,8 +11,9 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
-      - aws-eb-cli/install
-
+      - run:
+          name : install awsebcli
+          command : pip3 install awsebcli
       - run:
           name: Front-End Install
           command: |
