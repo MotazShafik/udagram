@@ -2,6 +2,7 @@ version: 2.1
 orbs: 
   node: circleci/node@4.1.0
   aws-cli: circleci/aws-cli@2.0.6
+  python: dialogue/python@2.19.0
   aws-eb-cli: speakable-org/aws-eb-cli@1.0.1
 jobs:
   build:
@@ -11,6 +12,7 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
+      - python/setup
       - run:
           name: Swap node versions to v16.13.2
           command: |
@@ -25,14 +27,7 @@ jobs:
       - run:
           name: Intalling AWS EB
           command: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-            NVM_DIR="$HOME/.nvm"
-            echo "export NVM_DIR=\"$HOME/.nvm\"" >> $BASH_ENV
-            echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
-            source $BASH_ENV
-            python3 --version
-            curl -O https://bootstrap.pypa.io/get-pip.py
-            python3 get-pip.py --user
+            python --version
             pip --version
             pip install awsebcli --upgrade --user
       - run:
