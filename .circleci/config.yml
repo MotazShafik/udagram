@@ -12,12 +12,6 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
-          name: prepare for python to install aws-eb-cli
-          command: |
-             python3 --version
-             pip install awsebcli --upgrade --user
-             eb --version
-      - run:
           name: Front-End Install
           command: |
             npm run frontend:install
