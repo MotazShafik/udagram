@@ -4,7 +4,7 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.6
   aws-eb-cli: speakable-org/aws-eb-cli@1.0.1
 jobs:
-  build:
+  prepare:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -22,34 +22,84 @@ jobs:
             nvm install v16
             nvm alias default v16.13.2
             node -v 
-      - run:
-          name: Intalling AWS EB
-          command: |
-            python3 --version
-            sudo pip --version
-            sudo pip install awsebcli --upgrade --user
+      # - run:
+      #     name: Intalling AWS EB
+      #     command: |
+      #       python3 --version
+      #       sudo pip --version
+      #       sudo pip install awsebcli --upgrade --user
+   
+  Frontend-Install:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
       - run:
           name: Front-End Install
           command: |
             npm run frontend:install
+    
+  Frontend-Build:
+    docker:
+      - image: "cimg/base:stable"
+    steps:   
       - run:
           name: Front-End Build
           command: |
             npm run frontend:build
-      - run:
+      
+  Frontend-Deploy:
+    docker:
+      - image: "cimg/base:stable"
+    steps:   
+       - run:
           name: Front-End Deployment
           command: |
             npm run frontend:deploy
+  Backend-Install:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
       - run:
           name: Back-End Install
           command: |
             npm run backend:install
+  Backend-Build:
+    docker:
+      - image: "cimg/base:stable"
+    steps:   
       - run:
           name: Back-End Build
           command: |
             npm run backend:build
-      - run:
+  Backend-Deploy:
+    docker:
+      - image: "cimg/base:stable"
+    steps:   
+       - run:
           name: Back-End Deployment
           command: |
             npm run backend:deploy
-            
+
+workflows:
+  version: 2
+  prepare_instal_build_deploy:
+    jobs: 
+      - prepare
+      - Frontend-Install :
+          require : 
+            - prepare
+      - Frontend-Build :
+          require : 
+            - Frontend-Install
+      - Frontend-Deploy :
+          require : 
+            - Frontend-Build
+      - Backend-Install :
+          require : 
+            - prepare
+      - Backend-Build :
+          require : 
+            - Backend-Install
+      - Backend-Deploy :
+          require : 
+            - Backend-Build
