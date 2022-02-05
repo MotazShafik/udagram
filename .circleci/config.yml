@@ -14,8 +14,8 @@ jobs:
       - run:
           name: prepare for python to install aws-eb-cli
           command: |
-             echo "source /path/to/virtualenv/bin/activate" >> $BASH
-      - aws-eb-cli/install
+             python3 --version
+  
       - run:
           name: Front-End Install
           command: |
