@@ -10,6 +10,7 @@ jobs:
     steps:
       - node/install
       - checkout
+      - aws-cli/setup
       - run:
           name : install awsebcli
           command : pip3 install awsebcli
