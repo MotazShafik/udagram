@@ -22,69 +22,26 @@ jobs:
             nvm install v16
             nvm alias default v16.13.2
             node -v 
-      - persist_to_workspace:
-          root: /home/circleci/project
-          paths:
-            - "./*"
-       
-  Frontend-Install:
-    docker:
-      - image: "cimg/node:14.15.5"
-    steps:
-      - attach_workspace:
-         at: /home/circleci/project/udagram-frontend
       - run:
           name: Front-End Install
           command: |
             npm run frontend:install
-    
-  Frontend-Build:
-    docker:
-      - image: "cimg/node:14.15.5"
-    steps:
-      - attach_workspace:
-         at: /home/circleci/project/udagram-frontend
       - run:
           name: Front-End Build
           command: |
             npm run frontend:build
-      
-  Frontend-Deploy:
-    docker:
-      - image: "cimg/node:14.15.5"
-    steps:
-      - attach_workspace:
-         at: /home/circleci/project/udagram-frontend
       - run:
           name: Front-End Deployment
           command: |
             npm run frontend:deploy
-  Backend-Install:
-    docker:
-      - image: "cimg/node:14.15.5"
-    steps:
-      - attach_workspace:
-         at: /home/circleci/project/udagram-api
       - run:
           name: Back-End Install
           command: |
             npm run backend:install
-  Backend-Build:
-    docker:
-      - image: "cimg/node:14.15.5"
-    steps:
-      - attach_workspace:
-         at: /home/circleci/project/udagram-api   
       - run:
           name: Back-End Build
           command: |
             npm run backend:build
-  Backend-Deploy:
-    docker:
-      - image: "cimg/node:14.15.5"
-    steps:
-      - attach_workspace:
-         at: /home/circleci/project/udagram-api   
       - run:
           name: Back-End Deployment
           command: |
@@ -95,21 +52,23 @@ workflows:
   build_deploy:
     jobs: 
       - prepare
-      - Frontend-Install :
+      - Front-End Install :
           requires : 
             - prepare
-      - Frontend-Build :
+      - Front-End Build :
           requires : 
-            - Frontend-Install
-      - Frontend-Deploy :
+            - Front-End Install
+      - Front-End Deployment :
           requires : 
-            - Frontend-Build
-      - Backend-Install :
+            - Front-End Build
+      
+      
+      - Back-End Install :
           requires : 
             - prepare
-      - Backend-Build :
+      - Back-End Build :
           requires : 
-            - Backend-Install
-      - Backend-Deploy :
+            - Back-End Install
+      - Back-End Deployment :
           requires : 
-            - Backend-Build
+            - Back-End Build
