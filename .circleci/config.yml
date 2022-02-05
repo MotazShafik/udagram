@@ -4,8 +4,6 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.6
   aws-eb-cli: speakable-org/aws-eb-cli@1.0.1
 jobs:
-   eb:
- 
    build:
     docker:
       - image: "cimg/base:stable"
