@@ -46,29 +46,3 @@ jobs:
           name: Back-End Deployment
           command: |
             npm run backend:deploy
-
-workflows:
-  version: 2
-  build_deploy:
-    jobs: 
-      - prepare
-      - Front-End Install :
-          requires : 
-            - prepare
-      - Front-End Build :
-          requires : 
-            - Front-End Install
-      - Front-End Deployment :
-          requires : 
-            - Front-End Build
-      
-      
-      - Back-End Install :
-          requires : 
-            - prepare
-      - Back-End Build :
-          requires : 
-            - Back-End Install
-      - Back-End Deployment :
-          requires : 
-            - Back-End Build
