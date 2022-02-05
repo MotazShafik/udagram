@@ -31,7 +31,7 @@ jobs:
    
   Frontend-Install:
     docker:
-      - image: "cimg/base:stable"
+      - image: "cimg/node:14.15.5"
     steps:
       - run:
           name: Front-End Install
@@ -40,7 +40,7 @@ jobs:
     
   Frontend-Build:
     docker:
-      - image: "cimg/base:stable"
+      - image: "cimg/node:14.15.5"
     steps:   
       - run:
           name: Front-End Build
@@ -49,7 +49,7 @@ jobs:
       
   Frontend-Deploy:
     docker:
-      - image: "cimg/base:stable"
+      - image: "cimg/node:14.15.5"
     steps:   
        - run:
           name: Front-End Deployment
@@ -57,7 +57,7 @@ jobs:
             npm run frontend:deploy
   Backend-Install:
     docker:
-      - image: "cimg/base:stable"
+      - image: "cimg/node:14.15.5"
     steps:
       - run:
           name: Back-End Install
@@ -65,7 +65,7 @@ jobs:
             npm run backend:install
   Backend-Build:
     docker:
-      - image: "cimg/base:stable"
+      - image: "cimg/node:14.15.5"
     steps:   
       - run:
           name: Back-End Build
@@ -73,7 +73,7 @@ jobs:
             npm run backend:build
   Backend-Deploy:
     docker:
-      - image: "cimg/base:stable"
+      - image: "cimg/node:14.15.5"
     steps:   
        - run:
           name: Back-End Deployment
