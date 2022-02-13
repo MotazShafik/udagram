@@ -1,6 +1,6 @@
 version: 2.1
 orbs: 
-  node: circleci/node@4.1.0
+  node: circleci/node@5.0.0
   aws-cli: circleci/aws-cli@2.0.6
   aws-eb-cli: speakable-org/aws-eb-cli@1.0.1
 jobs:
@@ -10,9 +10,9 @@ jobs:
     steps:
       - checkout 
       - node/install:
-          install-npm : true
-            node-version:'16.13.2'
-      - run : node --version
+          install-yarn: true
+          node-version: '16.13.2'
+      - run: node --version
       - aws-cli/setup
    
       - run:
