@@ -42,4 +42,5 @@ jobs:
 workflow:
   build:
     filter: 
-      branch:main
+      branches:
+        only:main
