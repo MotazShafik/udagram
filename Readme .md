@@ -1,5 +1,7 @@
 # Hosting a Full-Stack Application
 
+[![MotazShafik](https://circleci.com/gh/MotazShafik/udagram.svg?style=svg&circle-token=542afe13ae56c624ffe2d8fa8694df6eed1cfa02)](https://app.circleci.com/pipelines/github/MotazShafik/udagram?branch=main)
+ 
 
 ## Table of Contents
 
@@ -8,6 +10,8 @@
 * [Architecture diagram](#Architecture-diagram)
 * [CircleCI pipeline steps](#CircleCI-pipeline-steps)
 ## Summary
+
+
 
 In this project **udagram** we deploy Full-Stack application to AWS cloud service provider so that it is available to customers can be access the app by visiting http://motazudagram.s3-website-us-east-1.amazonaws.com    
 
