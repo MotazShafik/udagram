@@ -23,16 +23,6 @@ jobs:
             nvm alias default v16.13.2
             node -v 
       - run:
-          name: Installing AWS CLI
-          command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo pip3 install awsebcli --upgrade
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #        - .
-      - run:
           name: Front-End Install
           command: |
             npm run frontend:install
